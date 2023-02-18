@@ -1,0 +1,64 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:RadioButtonTheme"
+             x:Class="RadioButtonTheme.MainPage"
+             xmlns:am="clr-namespace:Microsoft.Maui.ApplicationModel;assembly=Microsoft.Maui.Essentials"
+             x:DataType="local:MainViewModel"
+             BackgroundColor="{DynamicResource PrimaryBackground}"
+             >
+
+    <ContentPage.Resources>
+ 
+        <Style x:Key="GroupBorderStyle"
+               TargetType="Border"
+               >
+            <Setter Property="HorizontalOptions"
+                    Value="Fill"/>
+            <Setter Property="VerticalOptions"
+                    Value="Fill"/>
+            <Setter Property="Margin"
+                    Value="10,0,10,5"/>
+            <Setter Property="Stroke"
+                    Value="{DynamicResource PrimaryForeground}"/>
+            <Setter Property="StrokeShape">
+                <RoundRectangle CornerRadius="5,5,5,5"/>
+            </Setter>
+        </Style>
+        
+    </ContentPage.Resources>
+    
+    <Grid Margin="5,5,5,5">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <Border Grid.Row="0"
+                Style="{StaticResource GroupBorderStyle}"
+                >
+            <StackLayout Orientation="Vertical"
+                         RadioButtonGroup.GroupName="Themes"
+                         RadioButtonGroup.SelectedValue="{Binding Theme}"
+                         >
+                <RadioButton Content="System"
+                             Value="{x:Static am:AppTheme.Unspecified}"
+                             TextColor="{DynamicResource PrimaryForeground}"
+                             />
+                <RadioButton Value="{x:Static am:AppTheme.Dark}"
+                             TextColor="{DynamicResource PrimaryForeground}"
+                             >
+                    <RadioButton.Content>
+                        <Label Text="Dark"/>
+                    </RadioButton.Content>
+                </RadioButton>
+                
+                <RadioButton Value="{x:Static am:AppTheme.Light}">
+                    <RadioButton.Content>
+                        <Label Text="Light"
+                               TextColor="{DynamicResource PrimaryForeground}"/>
+                    </RadioButton.Content>
+                </RadioButton>
+            </StackLayout>
+        </Border>
+    </Grid>
+</ContentPage>
